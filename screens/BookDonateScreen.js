@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import { View, StyleSheet, Text, FlatList,TouchableOpacity,KeyboardAvoidingView,TextInput } from 'react-native';
-import { ListItem } from 'react-native-elements'
+import { View, StyleSheet, Text, FlatList,TouchableOpacity,KeyboardAvoidingView,TextInput, Image } from 'react-native';
+import { ListItem, Icon } from 'react-native-elements'
 import firebase from 'firebase';
 import db from '../config'
 import MyHeader from '../components/MyHeader';
+import RecieverDetailsScreen  from '../screens/RecieverDetailsScreen';
 
 export default class BookDonateScreen extends Component{
   constructor(){
@@ -36,13 +37,21 @@ export default class BookDonateScreen extends Component{
 
   renderItem = ({item, i}) =>{
     return (
-          <View style={{borderBottomWidth: 2}}>
-            
-            <Text>{"Book Id: " + item.book_name}</Text>
-            <Text>{"Student id: " + item.reason_to_request}</Text>
-            <TouchableOpacity style={styles.button}>
-                <Text style={{color:'blue'}}>Donate</Text>
+          <View style={{borderBottomWidth: 2, flexDirection: "row",justifyContent: "space-between", padding:10}}>
+            <View>
+            <Image style={{height:50,width:50}} source={{uri: item.image_link}}/>
+            <Text style={{fontWeight: 'bold'}}>{item.book_name}</Text>
+            <Text>{item.reason_to_request}</Text>
+            </View>
+            <View style={{marginLeft: 'auto'}}>
+           <TouchableOpacity style={styles.button}
+            onPress ={()=>{
+              this.props.navigation.navigate("RecieverDetails",{"details": item})
+            }}
+>
+                <Text style={{color:'white'}}>View</Text>
             </TouchableOpacity>
+          </View>
           </View>
          
     )
@@ -72,8 +81,7 @@ const styles = StyleSheet.create({
     flex:1,
     fontSize: 20,
     justifyContent:'center',
-    alignItems:'center',
-  
+    alignItems:'center'
   },
   button:{
     width:100,
