@@ -7,8 +7,6 @@ import db from '../config';
 import { Icon } from "react-native-elements";
 import { RFValue } from "react-native-responsive-fontsize";
 
-
-
 export default class WelcomeScreen extends Component{
   constructor(){
     super();
@@ -58,7 +56,7 @@ export default class WelcomeScreen extends Component{
 userLogin = (emailId, password)=>{
    firebase.auth().signInWithEmailAndPassword(emailId, password)
    .then(()=>{
-     this.props.navigation.navigate('DonateBooks')
+    this.props.navigation.navigate('BuyScreen')
    })
    .catch((error)=> {
      var errorCode = error.code;
@@ -204,10 +202,10 @@ showModal = ()=>{
           
            <View style={{justifyContent:'center', alignItems:'center'}}>
               <Image
-                source={require("../assets/santa.png")}
+                source={require("../assets/basket.png")}
                 style={{width:130, height:130}}
         />
-              <Text style={styles.title}>Book Santa</Text>
+              <Text style={styles.title}>ACS</Text>
             </View>
            <View>
             <TextInput

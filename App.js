@@ -1,8 +1,7 @@
 import React from 'react';
 import { createAppContainer, createSwitchNavigator,} from 'react-navigation';
-
-import WelcomeScreen from './screens/WelcomeScreen';
 import { AppDrawerNavigator } from './components/AppDrawerNavigator'
+import WelcomeScreen from './screens/WelcomeScreen';
 import { AppTabNavigator } from './components/AppTabNavigator'
 
 

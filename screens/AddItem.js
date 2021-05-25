@@ -9,13 +9,13 @@ import {
   TouchableOpacity,
   Alert,
 } from "react-native";
-import { Card } from "react-native-elements";
+import { Icon, Input } from "react-native-elements";
 import MyHeader from "../components/MyHeader";
 import db from "../config";
 import firebase from "firebase";
 import { RFValue } from "react-native-responsive-fontsize";
 
-export default class SettingScreen extends Component {
+export default class AddItem extends Component {
   constructor() {
     super();
     this.state = {
@@ -67,7 +67,7 @@ export default class SettingScreen extends Component {
     return (
       <View style={{ flex: 1 }}>
         <View style={{ flex: 0.12 }}>
-          <MyHeader title="Settings" navigation={this.props.navigation} />
+          <MyHeader title="Add Items" navigation={this.props.navigation} />
         </View>
 
 
@@ -78,62 +78,74 @@ export default class SettingScreen extends Component {
                 padding: RFValue(10),
               }}
             >
-            <Text style={styles.label}>First Name </Text>
-              <TextInput
-                style={styles.formTextInput}
-                placeholder={"First Name"}
-                maxLength={12}
-                onChangeText={(text) => {
-                  this.setState({
-                    firstName: text,
-                  });
-                }}
-                value={this.state.firstName}
-              />
-
-            <Text style={styles.label}>Last Name </Text>
-              <TextInput
-                style={styles.formTextInput}
-                placeholder={"Last Name"}
-                maxLength={12}
-                onChangeText={(text) => {
-                  this.setState({
-                    lastName: text,
-                  });
-                }}
-                value={this.state.lastName}
-              />
-
-                <Text style={styles.label}>Contact </Text>
-              <TextInput
-                style={styles.formTextInput}
-                placeholder={"Contact"}
-                maxLength={10}
-                keyboardType={"numeric"}
-                onChangeText={(text) => {
-                  this.setState({
-                    contact: text,
-                  });
-                }}
-                value={this.state.contact}
-              />
-
-                <Text style={styles.label}>Address </Text>
-              <TextInput
-                style={styles.formTextInput}
-                placeholder={"Address"}
-                multiline={true}
-                onChangeText={(text) => {
-                  this.setState({
-                    address: text,
-                  });
-                }}
-                value={this.state.address}
-              />
+            <Input
+            style={styles.formTextInput}
+            label={"First Name"}
+            placeholder={"First Name"}
+            maxLength={12}
+            containerStyle={{
+              marginBottom:RFValue(15),
+              marginTop:RFValue(10)
+            }}
+            onChangeText={(text) => {
+              this.setState({
+                firstName: text,
+              });
+            }}
+            value={this.state.firstName}
+            />
+            <Input
+            style={styles.formTextInput}
+            label={"Last Name"}
+            placeholder={"Last Name"}
+            maxLength={12}
+            containerStyle={{
+              marginBottom:RFValue(15),
+            }}
+            onChangeText={(text) => {
+              this.setState({
+                lastName: text,
+              });
+            }}
+            value={this.state.lastName}
+            />
+            <Input
+            style={styles.formTextInput}
+            label={"Contact"}
+            placeholder={"Contact"}
+            maxLength={10}
+            containerStyle={{
+              marginBottom:RFValue(15),
+            }}
+            keyboardType={"numeric"}
+            onChangeText={(text) => {
+              this.setState({
+                contact: text,
+              });
+            }}
+            value={this.state.contact}
+            />
+            
+            <Input
+            style={styles.formTextInput}
+            label={"Address"}
+            placeholder={"Address"}
+            multiline
+            containerStyle={{
+              marginBottom:RFValue(15),
+            }}
+            onChangeText={(text) => {
+              this.setState({
+                address: text,
+              });
+            }}
+            value={this.state.address}
+            />
+              
             </View>
               <View style={styles.buttonView}>
                 <TouchableOpacity
-                  style={styles.button}
+                  style={[styles.button,{ marginTop: RFValue(30)}]}
                   onPress={() => {
                     this.updateUserDetails();
                   }}
@@ -167,17 +179,17 @@ const styles = StyleSheet.create({
   },
   formTextInput: {
     width: "90%",
-    height: RFValue(50),
-    padding: RFValue(10),
+    height: RFValue(40),
+    padding: RFValue(5),
     borderWidth:1,
     borderRadius:2,
     borderColor:"grey",
-    marginBottom:RFValue(20),
+    marginBottom:RFValue(10),
     marginLeft:RFValue(20)
   },
   button: {
-    width: "75%",
-    height: RFValue(60),
+    width: "60%",
+    height: RFValue(50),
     justifyContent: "center",
     alignItems: "center",
     borderRadius: RFValue(50),
@@ -190,12 +202,12 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.44,
     shadowRadius: 10.32,
     elevation: 16,
-    marginTop: RFValue(20),
+    marginTop: RFValue(30),
   },
   buttonView:{
     flex: 0.22,
     alignItems: "center",
-    marginTop:RFValue(100)
+    marginTop:RFValue(110)
 },
   buttonText: {
     fontSize: RFValue(23),
